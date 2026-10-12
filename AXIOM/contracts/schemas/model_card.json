@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/model_card.json",
+  "title": "AXIOM ModelCard",
+  "description": "Institutional memory of one model version (AX-10 §5). A model without a complete card cannot be promoted.",
+  "type": "object", "additionalProperties": false,
+  "required": ["model_id","version","kind","purpose","mechanism","training_window","status","trial_count","metrics","monitoring","kill_rule"],
+  "properties": {
+    "model_id": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["FORECAST","CALIBRATION","REGIME","COST_MODEL","FEATURE_SET"] },
+    "purpose": { "type": "string", "minLength": 10 },
+    "mechanism": { "type": "string", "minLength": 10 },
+    "training_window": {
+      "type": "object", "additionalProperties": false,
+      "required": ["from","to","n_eff"],
+      "properties": { "from": { "$ref": "common.json#/$defs/ts_ms" }, "to": { "$ref": "common.json#/$defs/ts_ms" },
+                      "n_eff": { "type": "number", "minimum": 0 } }
+    },
+    "features": { "type": "array", "items": { "type": "string" } },
+    "status": { "enum": ["RESEARCH","SHADOW","PAPER","MICRO_LIVE","CHAMPION","CHALLENGER","RETIRED"] },
+    "trial_count": { "type": "integer", "minimum": 1, "description": "N entering the Deflated Sharpe Ratio (AX-10 §3.4)" },
+    "metrics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sr_oos","psr_dsr","pbo","min_trl_ok"],
+      "properties": {
+        "sr_oos": { "type": "number" }, "psr_dsr": { "type": "number", "minimum": 0, "maximum": 1 },
+        "pbo": { "type": "number", "minimum": 0, "maximum": 1 }, "spa_p": { "type": "number", "minimum": 0, "maximum": 1 },
+        "ic": { "type": "number" }, "brier_skill": { "type": "number" }, "min_trl_ok": { "type": "boolean" },
+        "cost_stress_ok": { "type": "boolean" }, "regimes_consistent": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "known_failure_modes": { "type": "array", "items": { "type": "string" } },
+    "monitoring": {
+      "type": "array",
+      "items": { "type": "object", "additionalProperties": false,
+        "required": ["metric","threshold_ref","action"],
+        "properties": { "metric": { "type": "string" }, "threshold_ref": { "type": "string" },
+                        "action": { "type": "string" } } }
+    },
+    "kill_rule": { "type": "string", "minLength": 5 },
+    "artifact_hash": { "$ref": "common.json#/$defs/hash" },
+    "retired_reason": { "type": "string" }
+  }
+}

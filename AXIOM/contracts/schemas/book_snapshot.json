@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/book_snapshot.json",
+  "title": "AXIOM order-book snapshot (L1, HOT tier)",
+  "description": "Depth snapshot/diff materialised at the HOT cadence (AX-04 §2.1). `digest` is the SHA-256 of the canonical JSON of the levels.",
+  "type": "object", "additionalProperties": false,
+  "required": ["instrument_id","ts","bids","asks","depth","digest","first_ingest_ts","source"],
+  "properties": {
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "ts": {"$ref": "common.json#/$defs/ts_ms"},
+    "version": {"type": "string"},
+    "bids": {"type":"array","maxItems":400,"items":{"type":"array","prefixItems":[{"$ref":"common.json#/$defs/decimal"},{"$ref":"common.json#/$defs/decimal"}],"items":false}},
+    "asks": {"type":"array","maxItems":400,"items":{"type":"array","prefixItems":[{"$ref":"common.json#/$defs/decimal"},{"$ref":"common.json#/$defs/decimal"}],"items":false}},
+    "depth": {"type":"integer","minimum":1,"maximum":400},
+    "digest": {"$ref": "common.json#/$defs/hash"},
+    "first_ingest_ts": {"$ref": "common.json#/$defs/ts_ms"},
+    "source": {"$ref": "common.json#/$defs/source_tag"}
+  }
+}

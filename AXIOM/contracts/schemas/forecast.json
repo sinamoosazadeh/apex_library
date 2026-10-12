@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/forecast.json",
+  "title": "AXIOM Forecast",
+  "description": "Calibrated forecast object (AX-06 §3). A forecast without calibration has p_net = null and can never trade (T-MDL-001).",
+  "type": "object", "additionalProperties": false,
+  "required": ["forecast_id","instrument_id","horizon_bars","model_hash","calibration_hash","created_ts"],
+  "properties": {
+    "forecast_id": { "$ref": "common.json#/$defs/ulid" },
+    "snapshot_id": { "$ref": "common.json#/$defs/ulid" },
+    "decision_id": { "$ref": "common.json#/$defs/ulid" },
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "horizon_bars": { "enum": [1,4,16] },
+    "mu_raw": { "type": "number" },
+    "mu_net": { "type": "number" },
+    "sigma_model": { "type": "number", "minimum": 0 },
+    "sigma_market": { "type": "number", "minimum": 0 },
+    "p_net": { "type": ["number","null"], "minimum": 0, "maximum": 1 },
+    "n_eff": { "type": "number", "minimum": 0 },
+    "m_eff": { "type": "number", "minimum": 0 },
+    "weights": { "type": "object", "additionalProperties": { "type": "number" } },
+    "model_hash": { "$ref": "common.json#/$defs/hash" },
+    "calibration_hash": { "$ref": "common.json#/$defs/hash" },
+    "created_ts": { "$ref": "common.json#/$defs/ts_ms" }
+  }
+}

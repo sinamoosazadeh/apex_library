@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/journal_event.json",
+  "title": "AXIOM journal event",
+  "description": "One line of the append-only, hash-chained journal (AX-03 §5.3, AX-13 §5). chain_hash = SHA-256(prev_hash || payload_hash || ts || event_type). The journal is never edited and never compacted.",
+  "type": "object", "additionalProperties": false,
+  "required": ["seq","ts","event_type","payload","payload_hash","prev_hash","chain_hash"],
+  "properties": {
+    "seq": { "type": "integer", "minimum": 1 },
+    "ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "event_type": {
+      "enum": ["EV-BOOT","EV-READY","EV-SNAPSHOT","EV-DECISION","EV-REFUSAL","EV-INTENT","EV-VENUE-REQUEST",
+               "EV-VENUE-RESPONSE","EV-ORDER-STATE","EV-FILL","EV-PROTECTION","EV-RECONCILE","EV-CORRECTION",
+               "EV-GOV-STATE","EV-KILL","EV-INCIDENT","EV-PARAM-CHANGE","EV-MODEL-PROMOTE","EV-MODEL-DEMOTE",
+               "EV-FEAT-DEMOTE","EV-DATA-HEALTH","EV-REPAIR","EV-VENUE-DRIFT","EV-CLOCK","EV-OPERATOR",
+               "EV-CONFIG","EV-BACKUP","EV-DRILL"]
+    },
+    "correlation_id": { "type": "string" },
+    "payload": { "type": "object" },
+    "payload_hash": { "$ref": "common.json#/$defs/hash" },
+    "prev_hash": { "$ref": "common.json#/$defs/hash" },
+    "chain_hash": { "$ref": "common.json#/$defs/hash" }
+  }
+}

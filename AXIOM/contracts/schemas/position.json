@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/position.json",
+  "title": "AXIOM position view (venue truth or adopted)",
+  "description": "Venue-reported position. Protection quantities are always derived from THIS object, never from our own arithmetic (AX-08 §6.2).",
+  "type": "object", "additionalProperties": false,
+  "required": ["instrument_id","side","qty","ts","source","raw_hash"],
+  "properties": {
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "side": { "enum": ["LONG","SHORT","FLAT"] },
+    "qty": { "$ref": "common.json#/$defs/decimal" },
+    "entry_price": { "$ref": "common.json#/$defs/decimal" },
+    "mark_price": { "$ref": "common.json#/$defs/decimal" },
+    "leverage": { "type": "integer", "minimum": 1, "maximum": 125 },
+    "margin_type": { "enum": ["CROSSED","ISOLATED"] },
+    "margin_used": { "$ref": "common.json#/$defs/decimal" },
+    "unrealized_pnl": { "$ref": "common.json#/$defs/decimal" },
+    "liq_price": { "$ref": "common.json#/$defs/decimal" },
+    "ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "source": { "enum": ["WS","REST","ADOPTED","DERIVED"] },
+    "raw_hash": { "$ref": "common.json#/$defs/hash" }
+  }
+}

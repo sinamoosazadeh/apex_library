@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/quote.json",
+  "title": "AXIOM Quote / microprice (L1)",
+  "type": "object", "additionalProperties": false,
+  "required": ["instrument_id","ts","bid","ask","spread_bps","mid","first_ingest_ts","source"],
+  "properties": {
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "ts": {"$ref": "common.json#/$defs/ts_ms"},
+    "bid": {"$ref": "common.json#/$defs/decimal"},
+    "ask": {"$ref": "common.json#/$defs/decimal"},
+    "bid_qty": {"$ref": "common.json#/$defs/decimal"},
+    "ask_qty": {"$ref": "common.json#/$defs/decimal"},
+    "spread_bps": {"type":"number","minimum":0},
+    "mid": {"type":"number","exclusiveMinimum":0},
+    "microprice": {"type":"number","exclusiveMinimum":0},
+    "first_ingest_ts": {"$ref": "common.json#/$defs/ts_ms"},
+    "source": {"$ref": "common.json#/$defs/source_tag"}
+  }
+}

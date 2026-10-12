@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/target.json",
+  "title": "AXIOM Target (sized, risk-approved)",
+  "description": "The output of the portfolio/sizing layer and input of the planner. `binding_cap` names which of the five caps produced the final size (AX-07 §7).",
+  "type": "object", "additionalProperties": false,
+  "required": ["target_id","decision_id","instrument_id","side","qty","entry_ref","horizon_bars","notional","binding_cap","r_consumed","stop_plan","created_ts"],
+  "properties": {
+    "target_id": { "$ref": "common.json#/$defs/ulid" },
+    "decision_id": { "$ref": "common.json#/$defs/ulid" },
+    "forecast_id": { "$ref": "common.json#/$defs/ulid" },
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "side": { "$ref": "common.json#/$defs/side_semantic" },
+    "qty": { "$ref": "common.json#/$defs/decimal" },
+    "entry_ref": { "type": "number", "exclusiveMinimum": 0 },
+    "horizon_bars": { "enum": [1,4,16] },
+    "notional": { "type": "number", "minimum": 0 },
+    "binding_cap": { "enum": ["RISK","VOL","KELLY","LIQUIDITY","MARGIN","NONE"] },
+    "r_consumed": { "type": "number", "minimum": 0 },
+    "stop_plan": {
+      "type": "object", "additionalProperties": false,
+      "required": ["stop_price","trigger_by","s_stop"],
+      "properties": {
+        "stop_price": { "type": "number", "exclusiveMinimum": 0 },
+        "trigger_by": { "enum": ["MARK_PRICE"] },
+        "s_stop": { "type": "number", "exclusiveMinimum": 0 },
+        "components": { "type": "object", "additionalProperties": { "type": "number" } },
+        "revised_from": { "type": "number" }
+      }
+    },
+    "created_ts": { "$ref": "common.json#/$defs/ts_ms" }
+  }
+}

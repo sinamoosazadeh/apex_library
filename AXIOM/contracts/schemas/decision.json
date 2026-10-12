@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/decision.json",
+  "title": "AXIOM Decision record",
+  "description": "The daily/periodic decision artifact: targets accepted, refusals with reasons, and the environment that produced them (ADR-008: refusals are first-class).",
+  "type": "object", "additionalProperties": false,
+  "required": ["decision_id","snapshot_id","created_ts","gov_state","multipliers","targets","refusals","versions"],
+  "properties": {
+    "decision_id": { "$ref": "common.json#/$defs/ulid" },
+    "snapshot_id": { "$ref": "common.json#/$defs/ulid" },
+    "created_ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "universe_day": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "gov_state": { "enum": ["NORMAL","CAUTION","REDUCED","DEFENSIVE","FLATTEN","HALT"] },
+    "multipliers": {
+      "type": "object", "additionalProperties": false,
+      "required": ["m_gov","m_data","m_regime","m_exec"],
+      "properties": {
+        "m_gov": {"type":"number","minimum":0,"maximum":1},
+        "m_data": {"type":"number","minimum":0,"maximum":1},
+        "m_regime": {"type":"number","minimum":0,"maximum":1},
+        "m_exec": {"type":"number","minimum":0,"maximum":1}
+      }
+    },
+    "targets": { "type": "array", "items": { "$ref": "target.json" } },
+    "refusals": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["instrument_id","stage","reason_code"],
+        "properties": {
+          "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+          "stage": { "enum": ["FEATURE","FORECAST","COMBINE","PORTFOLIO","KERNEL","GATE","COST"] },
+          "check_id": { "type": "string" },
+          "reason_code": { "type": "string" },
+          "detail": { "type": "object" }
+        }
+      }
+    },
+    "versions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["code_commit","param_set_hash","profile_hash"],
+      "properties": {
+        "code_commit": { "type": "string" },
+        "param_set_hash": { "$ref": "common.json#/$defs/hash" },
+        "profile_hash": { "$ref": "common.json#/$defs/hash" },
+        "model_hashes": { "type": "array", "items": { "$ref": "common.json#/$defs/hash" } },
+        "feature_versions": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    }
+  }
+}

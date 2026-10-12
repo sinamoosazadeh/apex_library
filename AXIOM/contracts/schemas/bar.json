@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/bar.json",
+  "title": "AXIOM Bar (L1)",
+  "description": "One OHLCV bar as stored in L1. Provisional bars (is_final=false) are never decision-eligible (AX-03 §3.3, T-BAR-002).",
+  "type": "object", "additionalProperties": false,
+  "required": ["instrument_id","interval","open_time","close_time","o","h","l","c","v","qv","trades","taker_buy_qv","is_final","revision","source","first_ingest_ts","last_update_ts","raw_hash"],
+  "properties": {
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "interval":      { "enum": ["60","300","900","1800","3600","14400","86400","1D"] },
+    "open_time":     { "$ref": "common.json#/$defs/ts_ms" },
+    "close_time":    { "$ref": "common.json#/$defs/ts_ms" },
+    "o": {"type":"number","exclusiveMinimum":0}, "h": {"type":"number","exclusiveMinimum":0},
+    "l": {"type":"number","exclusiveMinimum":0}, "c": {"type":"number","exclusiveMinimum":0},
+    "v": {"type":"number","minimum":0}, "qv": {"type":"number","minimum":0},
+    "trades": {"type":"integer","minimum":0},
+    "taker_buy_qv": {"type":"number","minimum":0},
+    "is_final": {"type":"boolean"},
+    "revision": {"type":"integer","minimum":0},
+    "source": {"$ref": "common.json#/$defs/source_tag"},
+    "first_ingest_ts": {"$ref": "common.json#/$defs/ts_ms"},
+    "last_update_ts":  {"$ref": "common.json#/$defs/ts_ms"},
+    "raw_hash": {"$ref": "common.json#/$defs/hash"}
+  }
+}

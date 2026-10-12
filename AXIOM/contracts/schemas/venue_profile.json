@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/venue_profile.json",
+  "title": "AXIOM VenueProfile",
+  "description": "The artifact produced by the conformance harness (AX-02 §10). It is the ONLY source of class-V values. A profile that is stale or has a FAILED blocking probe makes LIVE unreachable (RK-08, AX-02 §11).",
+  "type": "object", "additionalProperties": false,
+  "required": ["profile_hash","created_ts","expires_ts","endpoints","probes","uncertainties","status"],
+  "properties": {
+    "profile_hash": { "$ref": "common.json#/$defs/hash" },
+    "created_ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "expires_ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "status": { "enum": ["CURRENT","STALE","INVALID"] },
+    "endpoints": {
+      "type": "object",
+      "description": "Route inventory with the observed request/weight cost of each (AX-02 §3, §7).",
+      "additionalProperties": {
+        "type": "object", "additionalProperties": false,
+        "required": ["method","path","signed","weight_observed"],
+        "properties": {
+          "method": { "enum": ["GET","POST","PUT","DELETE"] },
+          "path": { "type": "string", "pattern": "^/" },
+          "signed": { "type": "boolean" },
+          "weight_observed": { "type": "number", "minimum": 0 },
+          "max_per_minute": { "type": "number", "minimum": 0 },
+          "evidence_ref": { "$ref": "common.json#/$defs/hash" }
+        }
+      }
+    },
+    "instruments_factors": {
+      "type": "object",
+      "description": "Per-instrument trading filters observed live (tick, step, minNotional, band multiples).",
+      "additionalProperties": {
+        "type": "object", "additionalProperties": false,
+        "required": ["tick","step","min_notional","evidence_ref"],
+        "properties": {
+          "tick": { "$ref": "common.json#/$defs/decimal" },
+          "step": { "$ref": "common.json#/$defs/decimal" },
+          "min_notional": { "$ref": "common.json#/$defs/decimal" },
+          "price_band_mult": { "type": "number" },
+          "max_leverage": { "type": "integer" },
+          "evidence_ref": { "$ref": "common.json#/$defs/hash" }
+        }
+      }
+    },
+    "probes": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["probe_id","status","blocking","observed_ts"],
+        "properties": {
+          "probe_id": { "type": "string", "pattern": "^VCH-\\d{2}$" },
+          "status": { "enum": ["PASSED","FAILED","SKIPPED","STALE"] },
+          "blocking": { "type": "boolean" },
+          "observed_ts": { "$ref": "common.json#/$defs/ts_ms" },
+          "value": {},
+          "evidence_ref": { "$ref": "common.json#/$defs/hash" }
+        }
+      }
+    },
+    "uncertainties": {
+      "type": "array",
+      "description": "Open AMB-* items with their safe behaviour (AX-17 §4.2).",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["amb_id","status","safe_behaviour"],
+        "properties": {
+          "amb_id": { "type": "string", "pattern": "^AMB-\\d{2}$" },
+          "status": { "enum": ["OPEN","RESOLVED"] },
+          "safe_behaviour": { "type": "string" },
+          "resolved_by": { "type": "string" }
+        }
+      }
+    },
+    "clock": {
+      "type": "object", "additionalProperties": false,
+      "required": ["offset_ms","rtt_p95_ms","samples"],
+      "properties": {
+        "offset_ms": { "type": "integer" },
+        "rtt_p95_ms": { "type": "integer", "minimum": 0 },
+        "samples": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

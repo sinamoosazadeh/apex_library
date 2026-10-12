@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/trade.json",
+  "title": "AXIOM Trade (L1)",
+  "description": "Public futures trade. `taker_side` may be null: the WS flag is not trusted until VCH-31 confirms it (AMB-02); the REST kline split is the authoritative taker measure.",
+  "type": "object", "additionalProperties": false,
+  "required": ["instrument_id","trade_id","ts","price","qty","quote_qty","first_ingest_ts","source","raw_hash"],
+  "properties": {
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "trade_id":  { "type": "string", "minLength": 1, "maxLength": 64 },
+    "ts":        { "$ref": "common.json#/$defs/ts_ms" },
+    "price":     { "$ref": "common.json#/$defs/decimal" },
+    "qty":       { "$ref": "common.json#/$defs/decimal" },
+    "quote_qty": { "$ref": "common.json#/$defs/decimal" },
+    "taker_side": { "enum": ["BUY","SELL",null] },
+    "first_ingest_ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "source":    { "$ref": "common.json#/$defs/source_tag" },
+    "raw_hash":  { "$ref": "common.json#/$defs/hash" }
+  }
+}

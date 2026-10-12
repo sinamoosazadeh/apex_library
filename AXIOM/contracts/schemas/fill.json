@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/fill.json",
+  "title": "AXIOM Fill",
+  "description": "Venue fill plus the TCA inputs captured at decision/arrival time (AX-08 §3.3-R2, §8).",
+  "type": "object", "additionalProperties": false,
+  "required": ["fill_id","instrument_id","qty","price","fee","event_ts","received_ts","raw_hash"],
+  "properties": {
+    "fill_id": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "order_id": { "type": "string" },
+    "client_order_id": { "type": "string" },
+    "intent_id": { "$ref": "common.json#/$defs/ulid" },
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "qty": { "$ref": "common.json#/$defs/decimal" },
+    "price": { "$ref": "common.json#/$defs/decimal" },
+    "fee": { "$ref": "common.json#/$defs/decimal" },
+    "fee_asset": { "type": "string" },
+    "is_maker": { "type": "boolean" },
+    "realized_pnl": { "$ref": "common.json#/$defs/decimal" },
+    "event_ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "received_ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "decision_mid": { "type": "number" },
+    "arrival_mid": { "type": "number" },
+    "adverse_move": { "type": "number" },
+    "raw_hash": { "$ref": "common.json#/$defs/hash" }
+  }
+}

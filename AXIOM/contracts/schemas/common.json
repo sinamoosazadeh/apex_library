@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/common.json",
+  "title": "AXIOM common primitive types",
+  "description": "Shared definitions for every AX-* artifact schema (AX-03 §5, AX-13 §6).",
+  "$defs": {
+    "ulid":        { "type": "string", "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$" },
+    "hash":        { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "decimal":     { "type": "string", "pattern": "^-?\\d+(\\.\\d+)?$" },
+    "ts_ms":       { "type": "integer", "minimum": 0 },
+    "enum_env":    { "enum": ["RESEARCH","BACKTEST","SHADOW","PAPER","PROBE","MICRO_LIVE","LIVE"] },
+    "side_semantic": { "enum": ["OPEN_LONG","OPEN_SHORT","CLOSE_LONG","CLOSE_SHORT"] },
+    "instrument_id": { "type": "string", "pattern": "^[A-Z0-9]{2,20}:[A-Z0-9]{2,10}$" },
+    "idempotency_key": { "type": "string", "pattern": "^ax[A-Z0-9_-]{10,80}$" },
+    "source_tag":  { "enum": ["WS","REST","DERIVED","ADOPTED","PROFILE","HISTORY"] },
+    "provenance_class": { "enum": ["V","D","C","O"] }
+  }
+}

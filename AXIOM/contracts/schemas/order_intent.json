@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://axiom.local/contracts/schemas/order_intent.json",
+  "title": "AXIOM OrderIntent",
+  "description": "The journaled intention to act. Written and fsynced BEFORE any network transmission (INV-3, AX-08 §5.1). The idempotency key is bound to the intent and reused only for retries of the same unresolved intent (AX-08 §10).",
+  "type": "object", "additionalProperties": false,
+  "required": ["intent_id","idempotency_key","purpose","instrument_id","side","qty","created_ts","status","authorising_refs"],
+  "properties": {
+    "intent_id": { "$ref": "common.json#/$defs/ulid" },
+    "idempotency_key": { "$ref": "common.json#/$defs/idempotency_key" },
+    "correlation_id": { "type": "string", "minLength": 1 },
+    "decision_id": { "$ref": "common.json#/$defs/ulid" },
+    "target_id":   { "$ref": "common.json#/$defs/ulid" },
+    "purpose": { "enum": ["ENTRY","PROTECT","EXIT","FLATTEN","CANCEL","MODIFY","LEVERAGE","MARGIN_TYPE"] },
+    "instrument_id": { "$ref": "common.json#/$defs/instrument_id" },
+    "side": { "$ref": "common.json#/$defs/side_semantic" },
+    "qty": { "$ref": "common.json#/$defs/decimal" },
+    "limit_price": { "$ref": "common.json#/$defs/decimal" },
+    "time_in_force": { "enum": ["GTC","IOC","FOK","POST_ONLY", null] },
+    "price_type": { "enum": ["INPUT","MARKET","LAST", null] },
+    "trigger_by": { "enum": ["MARK_PRICE","CONTRACT_PRICE", null] },
+    "reduce_only": { "type": "boolean" },
+    "stop_price": { "$ref": "common.json#/$defs/decimal" },
+    "created_ts": { "$ref": "common.json#/$defs/ts_ms" },
+    "status": { "enum": ["WRITTEN","SENT","ACKED","PARTIAL","FILLED","REJECTED","UNKNOWN","RESOLVED_FILLED","RESOLVED_WORKING","RESOLVED_ABSENT","RESOLVED_ESCALATED","ABANDONED"] },
+    "attempts": { "type": "integer", "minimum": 0 },
+    "authorising_refs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["snapshot_id","kernel_verdict_ref","param_set_hash"],
+      "properties": {
+        "snapshot_id": { "$ref": "common.json#/$defs/ulid" },
+        "kernel_verdict_ref": { "type": "string" },
+        "param_set_hash": { "$ref": "common.json#/$defs/hash" },
+        "governor_state": { "enum": ["NORMAL","CAUTION","REDUCED","DEFENSIVE","FLATTEN","HALT"] }
+      }
+    }
+  }
+}
