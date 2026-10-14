@@ -150,7 +150,9 @@ structure was copied.
 
 ## 7. Standing audit obligations (`AX-17:§7`)
 
-1. `T-DOC-001` (forbidden-phrase lint) runs on every document change.
+1. `T-DOC-001` (forbidden-phrase lint) runs on every document change; `T-DOC-002` verifies the
+   non-normative boundary of `research/` (ADR-026/ADR-027) — the research layer may never become a
+   source of requirements.
 2. The traceability tables above are regenerated on every change to AX-14 (tests) and AX-15
    (parameters); a missing link fails the build (`T-GATE-001`).
 3. Every `AMB` transition (open→resolved) updates AX-02 §11, this register, and the arming record.

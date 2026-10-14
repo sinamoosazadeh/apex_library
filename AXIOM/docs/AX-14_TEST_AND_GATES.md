@@ -101,6 +101,8 @@ are the consolidated, cross-cutting set that no single document owns.
 | `T-LRN-001`…`T-LRN-016` | see AX-10 §9 |
 | `T-OPS-001`…`T-OPS-006`, `T-SEC-001`…`T-SEC-004`, `T-BACKUP-001`…`T-BACKUP-003`, `T-BENCH-01`…`T-BENCH-10` | see AX-12 §12 |
 | `T-CONF-001`…`T-CONF-040` | one per `VCH` probe (AX-02 §10); a FAILED blocking probe forbids `LIVE` |
+| `T-DOC-001` | forbidden-phrase lint over `docs/` (no "TBD", no "decide during implementation", no implementer's-choice clauses) |
+| `T-DOC-002` | the non-normative boundary of ADR-026/ADR-027: no clause outside those ADRs cites `research/` as a source of requirements, and no gate consumes `research/` artifacts |
 | `T-STAT-001`…`T-STAT-008` | DSR, PBO, SPA, MinTRL, bootstrap-CI calibration against published/synthetic references (AX-10 §3.4) |
 
 */ Note: `T-LAB-001` references the cost model version inside the label artifact; the assertion is that

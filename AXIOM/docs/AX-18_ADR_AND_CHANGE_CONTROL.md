@@ -318,6 +318,56 @@ and never silently deletes L0 or the journal (AX-04 §7).
 **Rationale.** Mechanism: an unattended system running out of disk is a crash at an unknown time;
 making degradation explicit converts a failure into a decision.
 
+### ADR-026 — Non-normative research layer under `research/` (`Accepted`, Class-2)
+
+**Context.** The owner maintains a literature encyclopedia (papers, books, regulation, venue/technical
+documentation) around the concepts used by the system and by comparable institutional systems. Without a
+declared status, such material would either be (wrongly) treated as design input or live outside the
+documents entirely — both violate `AX-01:§5.4` (no undeclared influence on the decision function).
+
+**Decision.** A directory `research/` exists with non-normative artifacts (`CONCEPT_ATLAS.md`,
+`build_index.py`, `concept_index.json`, `search_queries.txt`). It is **outside** the design suite:
+no clause of `AX-00…AX-17` references it, no gate (`G0…G6`) consumes it, and `T-DOC-001`'s
+scope is `docs/`. Its index is a *search-vector* registry, not evidence: a source found through it is
+graded (primary paper / replication / regulation / industry claim) before it may be cited by any design
+clause, and a concept enters the system only through the normal path — `AX-05 §2` (mechanism +
+marginal-information test + FDR) → `AX-10 §2–§4` (pre-registration, ladder) → `AX-15` (parameter id and
+class) → this register (if behaviour changes).
+
+**Rationale.** Mechanism: separating *knowledge collection* from *design authority*. The design must be
+able to say "every line here is justified and testable"; a research collection by nature contains
+unverified claims. Declaring the boundary explicitly keeps both honest — and it is falsifiable: the
+moment anything in `research/` is cited by a clause, this ADR is broken (`T-DOC-002` audits that no clause outside these two ADRs cites `research/`
+as a source of requirements).
+
+**Alternatives rejected.** (a) Putting the atlas inside `docs/` — it would inherit normative force it
+cannot support; (b) keeping it outside the repository entirely — the owner's collection would lose its
+index, its ids, and its reproducibility; (c) banning literature review — absurd, since `AX-00 §3`
+already fixes how external claims (`L-CLAIM`) are treated.
+
+**Consequences.** `research/` may be edited freely (Class-1); moving anything from it into the design
+requires the full procedure of §5. The generator `research/build_index.py --check` keeps the index and
+the query pack consistent, in the same spirit as `contracts/build_registry.py --check`.
+
+### ADR-027 — Governed build of the literature encyclopedia (`Accepted`, Class-2)
+
+**Decision.** The encyclopedia is built as a set of graded entries with the fixed schema of
+`research/CONCEPT_ATLAS.md` §E1 (`id, title_fa, title_en, aliases, family, engine, status, evidence,
+sources[], axiom_refs[], notes`) and the status legend `CORE | ADJACENT | SPECULATIVE`. Three-entry
+test per concept (§D3): primary source, second-degree interpretation, independent replication or
+refutation; a concept lacking an independent replication is filed as *un-replicated*, never as
+established.
+
+**Rationale.** Mechanism: the industry failure mode is not too little reading but too little grading —
+a collection that mixes a refereed paper, a vendor white paper and a YouTube strategy becomes unusable
+for decisions. Status + grading make the collection *queryable by evidentiary strength*, which is the
+same discipline `AX-00 §3` imposes on the design itself.
+
+**Consequences.** Concept ids (`A01…A12`, `B01…B12`, and future families) are stable and referenced by
+every collected artifact, so the encyclopedia can be indexed, deduplicated and searched by concept,
+family, or evidentiary status. Adding a concept is a data change in `research/build_index.py`, not a
+design change.
+
 ---
 
 ## 5. Amendment procedure (`AX-18:§5`)

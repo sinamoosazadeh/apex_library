@@ -1,0 +1,758 @@
+{
+  "$comment": "AXIOM research concept index (non-normative, ADR-026). Feeds the owner's literature-collection campaign; creates no design obligation.",
+  "schema_version": 1,
+  "concepts": [
+    {
+      "id": "A01",
+      "title_fa": "ساختار بازار / تشخیص نقطهٔ تغییر",
+      "title_en": "Market Structure & Change-Point Detection",
+      "aliases": [
+        "swing detection",
+        "trend filtering",
+        "zigzag",
+        "BOS/CHoCH (retail)"
+      ],
+      "family": "alpha",
+      "engine": "B04",
+      "status": "ADJACENT",
+      "axiom_refs": [
+        "AX-05 §3.1 (F-DONJ,F-ER)"
+      ],
+      "sources": [
+        "Page (1954) CUSUM",
+        "Killick et al. (2012) PELT",
+        "Tibshirani (2014) trend filtering",
+        "Dow theory (classic)",
+        "Lo, Mamaysky, Wang (2000) Foundations of Technical Analysis"
+      ],
+      "queries": [
+        "\"change-point detection\" financial time series",
+        "\"trend filtering\" L1 signal extraction",
+        "\"optimal changepoint detection\" PELT paper",
+        "\"swing detection\" OR \"pivot detection\" market structure",
+        "\"technical analysis\" \"foundations\" Lo Mamaysky Wang"
+      ]
+    },
+    {
+      "id": "A02",
+      "title_fa": "نقدینگی، عمق و شکار حدضرر",
+      "title_en": "Liquidity, Depth and Predatory Trading",
+      "aliases": [
+        "liquidity pools (retail)",
+        "stop runs",
+        "sweeps"
+      ],
+      "family": "micro",
+      "engine": "B01",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §3.3 (F-SPR,F-D1)",
+        "AX-07 §7 (سقف نقدینگی)"
+      ],
+      "sources": [
+        "Kyle (1985)",
+        "Amihud (2002)",
+        "Brunnermeier & Pedersen (2005) Predatory Trading",
+        "Cont, Kukanov & Stoikov (2014)",
+        "Brunnermeier & Pedersen (2009) funding liquidity"
+      ],
+      "queries": [
+        "\"predatory trading\" Brunnermeier Pedersen",
+        "\"liquidity resilience\" limit order book",
+        "\"order flow imbalance\" price impact",
+        "\"stop-loss\" cascade fire sales",
+        "\"liquidity\" \"depth elasticity\" market impact"
+      ]
+    },
+    {
+      "id": "A03",
+      "title_fa": "حجم، مشارکت و سمّیت جریان سفارش",
+      "title_en": "Volume, Participation and Order-Flow Toxicity",
+      "aliases": [
+        "volume profile (retail)",
+        "POV",
+        "participation rate"
+      ],
+      "family": "micro",
+      "engine": "B11",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §3.4 (F-TAKER)",
+        "AX-08 §4.2 (slicing)"
+      ],
+      "sources": [
+        "Easley, Lopez de Prado & O'Hara (2012) VPIN",
+        "Easley et al. (2011) The Volume Clock",
+        "Easley et al. (1996) PIN",
+        "Admati & Pfleiderer (1988) intraday patterns"
+      ],
+      "queries": [
+        "\"volume clock\" Easley Lopez de Prado",
+        "\"VPIN\" flow toxicity liquidity",
+        "\"probability of informed trading\" PIN estimation",
+        "\"participation rate\" \"POV\" execution algorithm",
+        "\"volume-synchronized\" sampling trading"
+      ]
+    },
+    {
+      "id": "A04",
+      "title_fa": "نوسان: خوشه‌بندی، فشردگی و انبساط",
+      "title_en": "Volatility: Clustering, Compression and Expansion",
+      "aliases": [
+        "volatility squeeze",
+        "range expansion",
+        "ATR"
+      ],
+      "family": "alpha",
+      "engine": "B04",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §3.2 (F-RV,F-EWMA,F-HAR-RV)",
+        "AX-07 §4 (هدف نوسان)"
+      ],
+      "sources": [
+        "Engle (1982) ARCH",
+        "Bollerslev (1986) GARCH",
+        "Andersen & Bollerslev (1998) realized vol",
+        "Corsi (2009) HAR",
+        "Crabel (1990) opening range breakout"
+      ],
+      "queries": [
+        "\"volatility clustering\" GARCH survey",
+        "\"realized volatility\" HAR model Corsi",
+        "\"volatility of volatility\" forecasting",
+        "\"range expansion\" OR \"opening range breakout\"",
+        "\"volatility regime\" switching model"
+      ]
+    },
+    {
+      "id": "A05",
+      "title_fa": "شکاف ارزش منصفانه ↔ شکاف نقدینگی",
+      "title_en": "Fair Value Gap ↔ Liquidity Void / Jump Risk",
+      "aliases": [
+        "FVG (retail)",
+        "imbalance",
+        "gap"
+      ],
+      "family": "micro",
+      "engine": "B01",
+      "status": "ADJACENT",
+      "axiom_refs": [
+        "AX-05 §3.3 (F-QIMB,F-MICRO)"
+      ],
+      "sources": [
+        "Merton (1976) jump-diffusion",
+        "Cont et al. (2014) price impact of order book events",
+        "Toth et al. (2011) square-root law",
+        "Hasbrouck (1991) information content of trades"
+      ],
+      "queries": [
+        "\"liquidity void\" order book gap",
+        "\"jump risk\" \"jump diffusion\" derivatives pricing",
+        "\"price impact\" \"resilience\" order book",
+        "\"post-trade reversion\" microstructure",
+        "\"order book imbalance\" predictor"
+      ]
+    },
+    {
+      "id": "A06",
+      "title_fa": "بلوک سفارش ↔ نقدینگی پنهان",
+      "title_en": "Order Blocks ↔ Hidden / Iceberg Liquidity",
+      "aliases": [
+        "supply-demand zone (retail)",
+        "iceberg",
+        "hidden orders"
+      ],
+      "family": "micro",
+      "engine": "B01",
+      "status": "ADJACENT",
+      "axiom_refs": [
+        "AX-05 §3.3 (F-D1,F-KYLE)"
+      ],
+      "sources": [
+        "Hautsch & Huang (hidden orders)",
+        "Anand & Venkataraman (iceberg orders)",
+        "Easley, Lopez de Prado & O'Hara (large-order detection)",
+        "Bouchaud et al. Trades, Quotes and Prices"
+      ],
+      "queries": [
+        "\"hidden orders\" OR \"iceberg orders\" market quality",
+        "\"order anticipation\" institutional trading",
+        "\"large order\" detection trade data",
+        "\"accumulation\" \"distribution\" institutional order flow",
+        "\"undisclosed liquidity\" empirical"
+      ]
+    },
+    {
+      "id": "A07",
+      "title_fa": "پول هوشمند ↔ معاملات مطلع",
+      "title_en": "Smart Money ↔ Informed Trading",
+      "aliases": [
+        "ICT (retail)",
+        "smart money concepts",
+        "order flow"
+      ],
+      "family": "micro",
+      "engine": "B01",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §3.4 (F-TAKER,F-CASCADE)"
+      ],
+      "sources": [
+        "Kyle (1985) continuous auctions",
+        "Glosten & Milgrom (1985)",
+        "Easley et al. (1996) PIN",
+        "Lee & Ready (1991) trade classification",
+        "Cong et al. Crypto Wash Trading"
+      ],
+      "queries": [
+        "\"informed trading\" Kyle model",
+        "\"trade classification\" Lee Ready tick rule",
+        "\"order flow toxicity\" measurement",
+        "\"wash trading\" crypto exchanges detection",
+        "\"smart money\" institutional order flow evidence"
+      ]
+    },
+    {
+      "id": "A08",
+      "title_fa": "حراج، کشف قیمت و انبارش تاجر",
+      "title_en": "Auction, Price Discovery and Dealer Inventory",
+      "aliases": [
+        "Wyckoff (retail)",
+        "market profile",
+        "auction theory"
+      ],
+      "family": "micro",
+      "engine": "B01",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §3.3 (F-MICRO)"
+      ],
+      "sources": [
+        "Hasbrouck (1995) information share",
+        "Ho & Stoll (1981) dealer pricing",
+        "Avellaneda & Stoikov (2008) high-frequency market making",
+        "Steidlmayer Market Profile (CBOT)",
+        "Wyckoff (1931)"
+      ],
+      "queries": [
+        "\"price discovery\" \"information share\" Hasbrouck",
+        "\"dealer inventory\" optimal pricing model",
+        "\"high-frequency market making\" Avellaneda Stoikov",
+        "\"market profile\" TPO auction theory",
+        "\"double auction\" microstructure theory"
+      ]
+    },
+    {
+      "id": "A09",
+      "title_fa": "روند و مومنتوم سری‌زمانی",
+      "title_en": "Trend & Time-Series Momentum",
+      "aliases": [
+        "trend following",
+        "CTA",
+        "managed futures"
+      ],
+      "family": "alpha",
+      "engine": "B04",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §3.1 (F-TS-MOM,F-TS-SLOPE)",
+        "AX-06 §4 (M1)"
+      ],
+      "sources": [
+        "Moskowitz, Ooi & Pedersen (2012) Time Series Momentum",
+        "Hurst, Ooi & Pedersen (2017) A Century of Trend Following",
+        "Brock, Lakonishok & LeBaron (1992)",
+        "Neely et al. (2014) technical indicators"
+      ],
+      "queries": [
+        "\"time series momentum\" Moskowitz Ooi Pedersen",
+        "\"trend following\" century of evidence",
+        "\"moving average\" rules stochastic properties Brock",
+        "\"Hurst exponent\" trend persistence",
+        "\"managed futures\" performance attribution"
+      ]
+    },
+    {
+      "id": "A10",
+      "title_fa": "مومنتوم مقطعی، واگرایی و فروپاشی",
+      "title_en": "Cross-Sectional Momentum, Divergence and Crashes",
+      "aliases": [
+        "relative strength",
+        "RSI divergence"
+      ],
+      "family": "alpha",
+      "engine": "B04",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §3.5 (F-XS-MOM)",
+        "AX-06 §2 (labels)"
+      ],
+      "sources": [
+        "Jegadeesh & Titman (1993)",
+        "Daniel & Moskowitz (2016) Momentum Crashes",
+        "Blitz, Huij & Martens (2011) residual momentum",
+        "Wilder (1978) RSI/ADX"
+      ],
+      "queries": [
+        "\"cross-sectional momentum\" Jegadeesh Titman",
+        "\"momentum crashes\" Daniel Moskowitz",
+        "\"residual momentum\" Blitz",
+        "\"52-week high\" momentum",
+        "\"RSI\" divergence predictive power evidence"
+      ]
+    },
+    {
+      "id": "A11",
+      "title_fa": "رژیم‌های بازار و تشخیص نقطهٔ شکست",
+      "title_en": "Market Regimes & Structural Breaks",
+      "aliases": [
+        "regime classification",
+        "risk-on/risk-off"
+      ],
+      "family": "alpha",
+      "engine": "B07",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-06 §6",
+        "AX-09 §4.1 (آستانه‌ها از توزیع‌های صفر)"
+      ],
+      "sources": [
+        "Hamilton (1989) Markov switching",
+        "Ang & Timmermann (2012) Regime Changes",
+        "Calvet & Fisher (2004) multifractal",
+        "Page (1954) CUSUM"
+      ],
+      "queries": [
+        "\"regime switching\" financial markets Ang Timmermann",
+        "\"Markov switching\" volatility state",
+        "\"hidden Markov model\" trading regime detection",
+        "\"structural break\" test time series finance",
+        "\"change point\" online detection Bayesian"
+      ]
+    },
+    {
+      "id": "A12",
+      "title_fa": "زمینهٔ زمانی، فصل‌بودن و تقویم",
+      "title_en": "Temporal Context, Seasonality and Calendar Effects",
+      "aliases": [
+        "session bias (retail)",
+        "killzones",
+        "time-of-day"
+      ],
+      "family": "data",
+      "engine": "B01",
+      "status": "ADJACENT",
+      "axiom_refs": [
+        "AX-05 §3.6 (تقویم)",
+        "AX-08 §3.2 (funding window)"
+      ],
+      "sources": [
+        "Andersen & Bollerslev (1997) intraday periodicity",
+        "Admati & Pfleiderer (1988)",
+        "Heston, Korajczyk & Sadka (2010) intraday patterns",
+        "crypto funding-rate literature"
+      ],
+      "queries": [
+        "\"intraday periodicity\" volatility Andersen Bollerslev",
+        "\"time-of-day\" liquidity patterns",
+        "\"day of week effect\" OR \"turn of the month\" anomaly",
+        "\"overnight vs intraday\" returns decomposition",
+        "\"funding rate\" perpetual futures settlement"
+      ]
+    },
+    {
+      "id": "B01",
+      "title_fa": "اتصال به بازار و ثبت داده",
+      "title_en": "Market Connectivity & Data Capture",
+      "aliases": [
+        "feed handler",
+        "FIX",
+        "tick store",
+        "replay"
+      ],
+      "family": "data",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-02",
+        "AX-04 §2",
+        "AX-03 §3"
+      ],
+      "sources": [
+        "FIX Trading Community specs",
+        "Lehalle & Laruelle Market Microstructure in Practice",
+        "Hasbrouck Empirical Market Microstructure"
+      ],
+      "queries": [
+        "FIX protocol specification 4.4 5.0",
+        "\"feed handler\" market data architecture low latency",
+        "\"sequence gap\" market data recovery exchange",
+        "\"replay\" deterministic market data simulation",
+        "\"PTP\" precision time protocol timestamping trading"
+      ]
+    },
+    {
+      "id": "B02",
+      "title_fa": "دادهٔ مرجع و شناسنامهٔ ابزار",
+      "title_en": "Reference Data & Instrument Master",
+      "aliases": [
+        "instrument master",
+        "contract spec",
+        "universe"
+      ],
+      "family": "data",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-04 §4",
+        "T-DATA-004"
+      ],
+      "sources": [
+        "Elton, Gruber & Blake (1996) survivorship bias",
+        "Fung & Hsieh (2000) backfill bias",
+        "instrument master design (industry)"
+      ],
+      "queries": [
+        "\"survivorship bias\" mutual fund performance",
+        "\"backfill bias\" hedge fund databases",
+        "\"instrument master\" reference data architecture",
+        "\"point-in-time\" data vs restated fundamentals",
+        "\"delisting bias\" return calculation"
+      ]
+    },
+    {
+      "id": "B03",
+      "title_fa": "کیفیت، یکپارچگی و ترمیم داده",
+      "title_en": "Data Quality, Integrity and Repair",
+      "aliases": [
+        "data gates",
+        "bitemporal",
+        "PIT",
+        "repair"
+      ],
+      "family": "data",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-04 §3 (QC-01..20)",
+        "AX-04 §8",
+        "AX-03 §3"
+      ],
+      "sources": [
+        "Lopez de Prado AFML (data section)",
+        "Snodgrass (1999) bitemporal SQL",
+        "Sullivan, Timmermann & White (1999) data snooping"
+      ],
+      "queries": [
+        "\"data snooping\" bootstrap technical trading",
+        "\"look-ahead bias\" backtest correction",
+        "\"bitemporal\" database point-in-time modeling",
+        "\"outlier detection\" Hampel filter MAD",
+        "\"data quality\" gate financial market data pipeline"
+      ]
+    },
+    {
+      "id": "B04",
+      "title_fa": "پژوهش آلفا و کارخانهٔ ویژگی",
+      "title_en": "Alpha Research & Feature Factory",
+      "aliases": [
+        "factor library",
+        "alpha decay",
+        "IC/IR",
+        "feature store"
+      ],
+      "family": "research",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-05 §2 (چارچوب پذیرش)",
+        "AX-15 (رجیستر)"
+      ],
+      "sources": [
+        "Kakushadze (2016) 101 Formulaic Alphas",
+        "Grinold & Kahn Active Portfolio Management",
+        "Harvey, Liu & Zhu (2016) cross-section of expected returns",
+        "Hou, Xue & Zhang (2020) replicating anomalies"
+      ],
+      "queries": [
+        "\"101 formulaic alphas\" Kakushadze",
+        "\"factor zoo\" multiple testing anomalies",
+        "\"fundamental law of active management\" information coefficient",
+        "\"replicating anomalies\" Hou Xue Zhang",
+        "\"alpha decay\" signal half-life capacity"
+      ]
+    },
+    {
+      "id": "B05",
+      "title_fa": "ترکیب سیگنال‌ها و انقباض",
+      "title_en": "Signal Combination & Shrinkage",
+      "aliases": [
+        "forecast combination",
+        "meta-labeling",
+        "ensembling"
+      ],
+      "family": "research",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-06 §5"
+      ],
+      "sources": [
+        "Timmermann (2006) Forecast Combinations",
+        "Lopez de Prado AFML (meta-labeling)",
+        "Bates & Granger (1969) combination of forecasts"
+      ],
+      "queries": [
+        "\"forecast combination\" survey Timmermann",
+        "\"meta-labeling\" Lopez de Prado",
+        "\"Bayesian model averaging\" forecasting finance",
+        "\"forecast pooling\" correlation shrinkage weights",
+        "\"ensemble\" trading signals weighting scheme"
+      ]
+    },
+    {
+      "id": "B06",
+      "title_fa": "کالیبراسیون احتمال و کمّی‌سازی عدم‌قطعیت",
+      "title_en": "Probabilistic Calibration & Uncertainty",
+      "aliases": [
+        "reliability",
+        "isotonic",
+        "conformal",
+        "bootstrap"
+      ],
+      "family": "research",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-06 §3",
+        "AX-08 §3.4"
+      ],
+      "sources": [
+        "Platt (1999) probabilistic outputs",
+        "Zadrozny & Elkan (2002) isotonic",
+        "Murphy (1973) Brier decomposition",
+        "Vovk/Shafer conformal prediction",
+        "Politis & Romano (1994) stationary bootstrap"
+      ],
+      "queries": [
+        "\"probability calibration\" reliability diagram finance",
+        "\"isotonic regression\" classifier probability calibration",
+        "\"Brier score\" decomposition Murphy",
+        "\"conformal prediction\" time series finance",
+        "\"stationary bootstrap\" dependent data"
+      ]
+    },
+    {
+      "id": "B07",
+      "title_fa": "برآورد رژیم و وضعیت",
+      "title_en": "Regime & State Estimation",
+      "aliases": [
+        "HMM",
+        "change-point",
+        "filtered state"
+      ],
+      "family": "research",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-06 §6",
+        "AX-09 §4.1"
+      ],
+      "sources": [
+        "Hamilton (1989)",
+        "Ang & Timmermann (2012)",
+        "Killick et al. (2012) PELT",
+        "Nystrup et al. (regime-based asset allocation)"
+      ],
+      "queries": [
+        "\"regime based asset allocation\" hidden Markov",
+        "\"filtered\" vs \"smoothed\" state probability online",
+        "\"online changepoint detection\" Bayesian",
+        "\"volatility regime\" risk scaling",
+        "\"regime entropy\" model uncertainty allocation"
+      ]
+    },
+    {
+      "id": "B08",
+      "title_fa": "ساخت پرتفوی و بهینه‌سازی مقاوم",
+      "title_en": "Portfolio Construction & Robust Optimization",
+      "aliases": [
+        "mean-variance",
+        "shrinkage",
+        "HRP",
+        "risk parity",
+        "factor model"
+      ],
+      "family": "portfolio",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-07 §5",
+        "AX-07 §6",
+        "ADR-013/ADR-014"
+      ],
+      "sources": [
+        "Markowitz (1952)",
+        "Ledoit & Wolf (2003, 2004, 2017)",
+        "Lopez de Prado (2016) HRP",
+        "Garleanu & Pedersen (2013)",
+        "Roncalli Introduction to Risk Parity and Budgeting"
+      ],
+      "queries": [
+        "\"honey I shrunk the sample covariance matrix\" Ledoit Wolf",
+        "\"building diversified portfolios\" hierarchical risk parity",
+        "\"dynamic trading with predictable returns and transaction costs\" Garleanu Pedersen",
+        "\"risk parity\" portfolio construction theory",
+        "\"robust portfolio optimization\" estimation error"
+      ]
+    },
+    {
+      "id": "B09",
+      "title_fa": "مدیریت ریسک و کنترل‌های پیش‌معاملاتی",
+      "title_en": "Risk Management & Pre-Trade Controls",
+      "aliases": [
+        "VaR",
+        "expected shortfall",
+        "kill switch",
+        "stress testing"
+      ],
+      "family": "risk",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-07 §2",
+        "AX-09 §2 (RK-01..25)",
+        "AX-09 §5 (K1..K8)"
+      ],
+      "sources": [
+        "Artzner et al. (1999) coherent risk measures",
+        "Rockafellar & Uryasev (2000) CVaR",
+        "Chekhlov, Uryasev & Zabarankin (2005) drawdown",
+        "SEC Rule 15c3-5 Market Access Rule",
+        "MiFID II RTS 6 algorithmic trading",
+        "Federal Reserve SR 11-7"
+      ],
+      "queries": [
+        "\"coherent measures of risk\" Artzner",
+        "\"conditional value at risk\" optimization Rockafellar",
+        "\"market access rule\" 15c3-5 pre-trade controls",
+        "MiFID II RTS 6 \"kill functionality\" algorithmic trading",
+        "\"model risk management\" SR 11-7 guidance"
+      ]
+    },
+    {
+      "id": "B10",
+      "title_fa": "تعیین حجم و تخصیص سرمایه",
+      "title_en": "Sizing & Capital Allocation",
+      "aliases": [
+        "Kelly",
+        "vol targeting",
+        "risk budgeting",
+        "drawdown control"
+      ],
+      "family": "risk",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-07 §7",
+        "AX-07 §3.2 (R)"
+      ],
+      "sources": [
+        "Kelly (1956)",
+        "MacLean, Thorp & Ziemba The Kelly Capital Growth Investment Criterion",
+        "Moreira & Muir (2017) volatility-managed portfolios",
+        "Grossman & Zhou (1993) drawdown control",
+        "Merton (1969/1971) continuous-time portfolio"
+      ],
+      "queries": [
+        "\"Kelly criterion\" fractional Kelly risk of ruin",
+        "\"volatility managed portfolios\" Moreira Muir",
+        "\"controlling drawdowns\" optimal investment strategy Grossman Zhou",
+        "\"risk budgeting\" portfolio allocation framework",
+        "\"volatility targeting\" evidence Sharpe improvement"
+      ]
+    },
+    {
+      "id": "B11",
+      "title_fa": "اجرا و تحلیل هزینهٔ معاملات",
+      "title_en": "Execution & Transaction Cost Analysis",
+      "aliases": [
+        "implementation shortfall",
+        "Almgren-Chriss",
+        "VWAP/TWAP",
+        "TCA",
+        "market impact"
+      ],
+      "family": "exec",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-08 §3",
+        "AX-08 §4",
+        "AX-08 §8 (TCA)"
+      ],
+      "sources": [
+        "Perold (1988) implementation shortfall",
+        "Almgren & Chriss (2000)",
+        "Bertsimas & Lo (1998)",
+        "Obizhaeva & Wang (2013)",
+        "Gatheral (2010)",
+        "Toth et al. (2011) square-root law",
+        "Kissell The Science of Algorithmic Trading"
+      ],
+      "queries": [
+        "\"implementation shortfall\" Perold paper vs reality",
+        "\"optimal execution of portfolio transactions\" Almgren Chriss",
+        "\"optimal control of execution costs\" Bertsimas Lo",
+        "\"square root law\" market impact liquidity",
+        "\"no dynamic arbitrage\" market impact Gatheral",
+        "\"transaction cost analysis\" TCA decomposition slippage"
+      ]
+    },
+    {
+      "id": "B12",
+      "title_fa": "عملیات، حاکمیت مدل و پس‌معاملات",
+      "title_en": "Operations, Model Governance & Post-Trade",
+      "aliases": [
+        "OMS/EMS",
+        "reconciliation",
+        "attribution",
+        "model registry",
+        "MLOps"
+      ],
+      "family": "ops",
+      "engine": "—",
+      "status": "CORE",
+      "axiom_refs": [
+        "AX-08 §5",
+        "AX-08 §7",
+        "AX-12",
+        "AX-10 §5"
+      ],
+      "sources": [
+        "Bacon Practical Portfolio Performance Measurement and Attribution",
+        "Menchero, Orr & Wang attribution",
+        "Federal Reserve SR 11-7",
+        "FIX order lifecycle specification",
+        "Narang Inside the Black Box"
+      ],
+      "queries": [
+        "\"performance attribution\" Brinson multi-factor",
+        "\"model risk management\" model inventory validation governance",
+        "\"trade reconciliation\" breaks operations asset manager",
+        "\"order management system\" EMS OMS architecture buy side",
+        "\"champion challenger\" model deployment governance quant"
+      ]
+    }
+  ],
+  "id_ranges": {
+    "A01..A12": "the twelve apex_gen5 engines (E01..E12), translated to institutional vocabulary",
+    "B01..B12": "the twelve operational engines of an institutional quant stack"
+  },
+  "status_legend": {
+    "CORE": "established concept with a real institutional/academic literature",
+    "ADJACENT": "the retail concept maps onto a real phenomenon, but the retail formulation is not evidence",
+    "SPECULATIVE": "no independent literature; record as a hypothesis only"
+  }
+}
